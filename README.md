@@ -2,7 +2,7 @@
 
 The project is clone from [https://www.youtube.com/watch?v=sqGowdB1tvY&t=54s]
 
--   NextJs + NestJs + Mysql
+-   NextJs + NestJs + Mysql + Chakra UI
 
 # Features
 
