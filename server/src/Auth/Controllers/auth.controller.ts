@@ -65,6 +65,15 @@ export class AuthController {
     return this.AuthService.verifyToken(refreshToken, res);
   }
 
+  @UseGuards(RefreshTokenGuard)
+  @Get('currentV2')
+  getCurrentDataV2(
+    @User() { refreshToken }: { refreshToken: string },
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    return this.AuthService.getCurrentDataV2(refreshToken, res);
+  }
+
   @UseGuards(AccessTokenGuard)
   @Get('current')
   getCurrentData(@User() user: TAccessTokenPayload) {

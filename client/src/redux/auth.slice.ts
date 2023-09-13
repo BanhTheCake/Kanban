@@ -10,7 +10,7 @@ export interface AuthSlice {
     forceLogout: boolean;
 }
 
-const initialState: AuthSlice = {
+const initialState: Partial<AuthSlice> = {
     token: '',
     user: {
         id: '',

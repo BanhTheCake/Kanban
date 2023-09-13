@@ -84,7 +84,6 @@ const SectionsBoards: FunctionComponent<Props> = ({ sections, boardId }) => {
     };
 
     const onDragEnd = (result: DropResult) => {
-        console.log('result: ', result);
         const currentBoard = queryClient.getQueryData<TGetDetailsBoard>([
             '/boards/current',
             boardId,

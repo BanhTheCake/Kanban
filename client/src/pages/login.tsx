@@ -18,6 +18,8 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { setValue } from '@/redux/auth.slice';
 import { useMutation } from 'react-query';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 type InputsLogin = {
     username: string,

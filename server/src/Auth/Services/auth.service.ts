@@ -190,4 +190,42 @@ export class AuthService {
       throw new InternalServerErrorException(handleServerError('verifyToken'));
     }
   }
+
+  async getCurrentDataV2(
+    refreshToken: string,
+    res: Response,
+  ): Promise<TResponse> {
+    try {
+      const currentUser = await this.userRepository.findOne({
+        where: { refreshToken },
+      });
+
+      if (!currentUser) {
+        res.cookie('refreshToken', null, cookieConfig);
+        throw new UnauthorizedException();
+      }
+
+      const accessToken = this.JWTService.generateAccessToken({
+        id: currentUser.id,
+        username: currentUser.username,
+      });
+
+      return {
+        errCode: 0,
+        msg: 'Ok',
+        data: {
+          token: accessToken,
+          user: {
+            id: currentUser.id,
+            username: currentUser.username,
+          },
+        },
+      };
+    } catch (error) {
+      if (error.response) {
+        throw error;
+      }
+      throw new InternalServerErrorException(handleServerError('verifyToken'));
+    }
+  }
 }
